@@ -68,6 +68,10 @@ let filter = (result) => {
 */
 // console.log(filter('Pick up'));
 
+app.get('/', function (req, res) {
+   res.render('index');
+});
+
 app.get('/api/track/:id', function (req, res) {
     var url = 'https://t.17track.net/en#nums=';
     let link = url + req.params.id;
