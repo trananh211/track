@@ -9,10 +9,10 @@ app.listen(process.env.PORT || 3000);
 
 let track = async (url) => {
     try {
-        // const browser = await puppeteer.launch();
+        // const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
         // const page = await browser.newPage();
 
-        let browser = await puppeteer.launch({headless: true});
+        let browser = await puppeteer.launch({headless: true,args: ['--no-sandbox', '--disable-setuid-sandbox']});
         let page = await browser.newPage();
         await page.setViewport({width: 1920, height: 1080});
         await page.setRequestInterception(true);
