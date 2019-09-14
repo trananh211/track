@@ -32,7 +32,9 @@ let track = async (url) => {
             items.forEach((item) => {
                 links.push({
                     title: item.querySelector('p.text-uppercase').innerText,
-                    value: item.querySelector('p.text-capitalize').getAttribute('title')
+                    value: item.querySelector('p.text-capitalize').getAttribute('title'),
+                    carrier_from: item.querySelector('div.from .base-info i').innerText,
+                    carrier_to: item.querySelector('div.to .base-info i').innerText
                 });
             });
             return links;
