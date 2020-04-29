@@ -25,16 +25,29 @@ let track = async (url) => {
             }
         });
         await page.goto(url);
-
-        let results = await page.evaluate(() => {
+		await page.waitForSelector('.jcTrackContainer .tracklist-item');
+		await page.click(".jcTrackContainer .tracklist-item");
+		
+		let results = await page.evaluate(() => {
             let items = document.querySelectorAll('.jcTrackContainer .tracklist-item');
             let links = [];
             items.forEach((item) => {
+
+                let carrier_from = "";
+                try {
+                    carrier_from = item.querySelector('div.from .base-info i').innerText;
+                } catch (err) {}
+
+                let carrier_to = "";
+                try {
+                    carrier_to = item.querySelector('div.to .base-info i').innerText;
+                } catch (err) {}
+
                 links.push({
                     title: item.querySelector('p.text-uppercase').innerText,
                     value: item.querySelector('p.text-capitalize').getAttribute('title'),
-                    carrier_from: item.querySelector('div.from .base-info i').innerText,
-                    carrier_to: item.querySelector('div.to .base-info i').innerText
+                    carrier_from: carrier_from,
+                    carrier_to: carrier_to
                 });
             });
             return links;
