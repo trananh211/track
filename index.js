@@ -26,6 +26,7 @@ let track = async (url) => {
         });
         await page.goto(url);
 		await page.waitForSelector('.jcTrackContainer .tracklist-item');
+		await page.waitFor(10000);
 		await page.click(".jcTrackContainer .tracklist-item");
 		
 		let results = await page.evaluate(() => {
