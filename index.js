@@ -12,7 +12,7 @@ let track = async (url) => {
         // const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
         // const page = await browser.newPage();
 
-        let browser = await puppeteer.launch({headless: true,args: ['--no-sandbox', '--disable-setuid-sandbox']});
+        let browser = await puppeteer.launch({headless: false, args: ['--no-sandbox', '--disable-setuid-sandbox']});
         let page = await browser.newPage();
         await page.setViewport({width: 1920, height: 1080});
         await page.setRequestInterception(true);
